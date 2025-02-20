@@ -1,2 +1,1 @@
-worker: python your_script.py
-
+worker: python bot.py
