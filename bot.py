@@ -51,9 +51,9 @@ def style_message(message):
         bot.reply_to(message, "Please provide text. Example: /style Hello")
         return
     
-    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(10)])
+    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(30)])
     
-    bot.reply_to(message, f"Here are your 10 stylish names:\n\n{styled_names}")
+    bot.reply_to(message, f"Here are your 30 stylish names:\n\n{styled_names}")
 
 # RapidAPI se status check karne ka command
 @bot.message_handler(commands=['api'])
