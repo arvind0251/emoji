@@ -26,12 +26,12 @@ def fancy_text(text, style=1):
                       "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷" 
                       "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
     ]
-    return text.translate(fonts[style])
+    return text.translate(random.choice(fonts))
 
-# Crown emoji add karne ka function
+# Crown + Love Emojis
 def add_emojis(text):
-    crown_emojis = ["👑", "👑✨", "👑🔥", "👑💎", "👑🌟", "👑🎀", "👑🎉", "👑💖", "👑💫", "👑😎", "👑🥇"]
-    return random.choice(crown_emojis) + " " + text + " " + random.choice(crown_emojis)
+    crown_love_emojis = ["👑💖", "💖👑", "👑🔥", "💎👑", "👑✨", "💖🎀", "👑💫", "👑🎉", "💖🥇", "👑😎"]
+    return random.choice(crown_love_emojis) + " " + text + " " + random.choice(crown_love_emojis)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -45,11 +45,9 @@ def style_message(message):
         bot.reply_to(message, "Please provide text. Example: /style Hello")
         return
     
-    styles = [fancy_text(text, i) for i in range(4)]
-    styled_text = random.choice(styles)
-    styled_text = add_emojis(styled_text)
+    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(10)])
     
-    bot.reply_to(message, styled_text)
+    bot.reply_to(message, f"Here are your 10 stylish names:\n\n{styled_names}")
 
 # RapidAPI se status check karne ka command
 @bot.message_handler(commands=['api'])
