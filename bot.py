@@ -3,7 +3,7 @@ import random
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Replace with your Telegram bot token
-TOKEN = "YOUR_BOT_TOKEN"
+TOKEN = "7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0"
 OWNER_ID = "7256617868"  # Replace with the actual owner ID
 GROUP_1 = "https://t.me/superyodha00"  # First group link
 GROUP_2 = "https://t.me/supar_yodha_X_army"  # Second group link
