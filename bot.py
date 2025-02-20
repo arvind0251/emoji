@@ -3,9 +3,9 @@ import random
 import http.client
 
 # Bot Token
-TOKEN = "7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0"
+TOKEN = "7585692002:AAHcYU6Ksn16t21kb3fO-N_5Yik0"
 
-# API Key & ID
+# API Key for RapidAPI
 RAPIDAPI_KEY = "823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1"
 
 bot = telebot.TeleBot(TOKEN)
@@ -25,7 +25,7 @@ text_styles = [
 
 # 500 Emoji Pack
 emoji_pack = [
-    "👑💖", "🔥💎", "✨🎀", "🎉💖", "👑🥇", "💫💖", "🌟🎀", "👑😎", "🦋✨", "💜💖", "🎩🔥",
+       "👑💖", "🔥💎", "✨🎀", "🎉💖", "👑🥇", "💫💖", "🌟🎀", "👑😎", "🦋✨", "💜💖", "🎩🔥",
     "💛🎶", "💙💎", "🚀🔥", "🌸💖", "🥂🎉", "🎸🔥", "⚡👑", "🎭💖", "💚🎩", "🎼💎", "🥰✨", "🤩👑", "💘🔥",
     "🥇💜", "🎀💎", "✨💗", "🎊🔥", "💖🎸", "💞👑", "🔱💫", "🏆💖", "💃🎀", "🕺🔥", "🎵💎", "🎤👑",
     "🦄💖", "🌈🔥", "🌹🎀", "🥳💎", "🎯💖", "💰👑", "🎶🔥", "💐💎", "👑💓", "🎖💖", "🏅🔥", "🎩💎",
@@ -42,16 +42,19 @@ def add_emojis(text):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, f"Send any text and I'll style it! Try /style YourText\n\n🔑 API ID: {API_ID}")
+    bot.send_message(
+        message.chat.id, 
+        "👋 Welcome! Send any text and I'll style it!\n\nTry using:\n👉 /style YourText"
+    )
 
 @bot.message_handler(commands=['style'])
 def style_message(message):
     text = message.text.replace("/style ", "").strip()
     if not text:
-        bot.reply_to(message, "Please provide text. Example: /style Hello")
+        bot.reply_to(message, "⚠️ Please provide text. Example: /style Hello")
         return
     styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(10)])
-    bot.reply_to(message, f"Here are your 10 stylish names:\n\n{styled_names}")
+    bot.reply_to(message, f"🎨 Here are your 10 stylish names:\n\n{styled_names}")
 
 # API call function
 @bot.message_handler(commands=['api'])
@@ -62,9 +65,9 @@ def call_api(message):
         conn.request("GET", "/status", headers=headers)
         res = conn.getresponse()
         data = res.read()
-        bot.reply_to(message, f"API Response: {data.decode('utf-8')}\n\n🔑 API ID: {API_ID}")
+        bot.reply_to(message, f"✅ API Response:\n\n{data.decode('utf-8')}")
     except Exception as e:
-        bot.reply_to(message, f"API Error: {str(e)}")
+        bot.reply_to(message, f"❌ API Error: {str(e)}")
 
 # Run bot
 bot.polling()
