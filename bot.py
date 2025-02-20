@@ -1,6 +1,7 @@
 import telebot
 import random
 import os
+import http.client
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Use environment variables for sensitive information
@@ -8,6 +9,7 @@ TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-
 OWNER_ID = os.getenv("OWNER_ID", "7256617868")  # Replace with the actual owner ID
 GROUP_1 = os.getenv("GROUP_1", "https://t.me/superyodha00")  # First group link
 GROUP_2 = os.getenv("GROUP_2", "https://t.me/supar_yodha_X_army")  # Second group link
+RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY", "823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1")  # RapidAPI key
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -15,7 +17,7 @@ bot = telebot.TeleBot(TOKEN)
 def fancy_text(text, style=1):
     fonts = [
         str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂�𝓃𝑜�𝓅𝓆𝓇�𝓈𝓉𝓊𝓋𝓌𝓍𝓎�" 
+                      "𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏" 
                       "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝐽𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"),
         str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
                       "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝓊𝕧𝕨𝕩𝕪𝕫" 
@@ -28,7 +30,7 @@ def fancy_text(text, style=1):
                       "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"),
         str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
                       "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃" 
-                      "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨�𝓩")
+                      "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩")
     ]
     return text.translate(fonts[style])
 
@@ -72,6 +74,22 @@ def style_message(message):
     styled_text = add_emojis(styled_text)
     
     bot.reply_to(message, styled_text)
+
+# New command to call the API
+@bot.message_handler(commands=['api'])
+def call_api(message):
+    try:
+        conn = http.client.HTTPSConnection("ofc.p.rapidapi.com")
+        headers = {
+            'x-rapidapi-key': RAPIDAPI_KEY,
+            'x-rapidapi-host': "ofc.p.rapidapi.com"
+        }
+        conn.request("GET", "/status", headers=headers)
+        res = conn.getresponse()
+        data = res.read()
+        bot.reply_to(message, f"API Response: {data.decode('utf-8')}")
+    except Exception as e:
+        bot.reply_to(message, f"Failed to call API: {str(e)}")
 
 # Run bot
 bot.polling()
