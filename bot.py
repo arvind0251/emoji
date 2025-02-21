@@ -17,7 +17,7 @@ def fancy_text(text, style=1):
                       "𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏" 
                       "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝐽𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"),
         str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝓊𝕧𝕨𝕩𝕪𝕫" 
+                      "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝓉𝓊𝕧𝕨𝕩𝕪𝕫" 
                       "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"),
         str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
                       "𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟" 
@@ -28,15 +28,17 @@ def fancy_text(text, style=1):
     ]
     return text.translate(random.choice(fonts))
 
-# 50 New Crown + Love + Fire + Stars + Diamonds Emoji Pack
+# Emoji Pack
+emoji_pack = [
+    "👑💖", "💖👑", "👑🔥", "💎👑", "👑✨", "💖🎀", "👑💫", "👑🎉", "💖🥇", "👑😎",
+    "🌟👑", "💖🌹", "👑👀", "🔥👑", "✨💖", "💎💖", "🎀👑", "👑💜", "👑🖤", "💖💫",
+    "👑🌺", "💖🔥", "👑🎆", "🥇💖", "🌟🔥", "💖💎", "👑🎀", "💖💥", "🔥🥇", "💖🌠",
+    "💖💗", "👑💞", "👑💖🌟", "🔥💎", "🎉👑", "💖👑✨", "🎆💖", "💖🔥💎", "👑💥", "🌠👑",
+    "💎👑💖", "💖💡", "👑🎈", "👑💖🌹", "💖🕊", "💖👑💥", "👑💎🔥", "💖🌟✨", "🥇👑", "💖🚀",
+    "👑👑", "✦✦✦👑✦✦✦", "♛♛", "✦✦♛✦✦", "✦✦", "꧁༒☬☬༒꧂", "꧁༒༒꧂", "༒༒", "꧁꧂"
+]
+
 def add_emojis(text):
-    emoji_pack = [
-        "👑💖", "💖👑", "👑🔥", "💎👑", "👑✨", "💖🎀", "👑💫", "👑🎉", "💖🥇", "👑😎",
-        "🌟👑", "💖🌹", "👑👀", "🔥👑", "✨💖", "💎💖", "🎀👑", "👑💜", "👑🖤", "💖💫",
-        "👑🌺", "💖🔥", "👑🎆", "🥇💖", "🌟🔥", "💖💎", "👑🎀", "💖💥", "🔥🥇", "💖🌠",
-        "💖💗", "👑💞", "👑💖🌟", "🔥💎", "🎉👑", "💖👑✨", "🎆💖", "💖🔥💎", "👑💥", "🌠👑",
-        "💎👑💖", "💖💡", "👑🎈", "👑💖🌹", "💖🕊", "💖👑💥", "👑💎🔥", "💖🌟✨", "🥇👑", "💖🚀"
-    ]
     return random.choice(emoji_pack) + " " + text + " " + random.choice(emoji_pack)
 
 @bot.message_handler(commands=['start', 'help'])
@@ -45,17 +47,16 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['style'])
 def style_message(message):
-    text = message.text.replace("/style ", "")
+    text = message.text.replace("/style ", "").strip()
     
     if not text:
         bot.reply_to(message, "Please provide text. Example: /style Hello")
         return
     
-    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(30)])
+    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(50)])
     
-    bot.reply_to(message, f"Here are your 30 stylish names:\n\n{styled_names}")
+    bot.reply_to(message, f"Here are your 50 stylish names:\n\n{styled_names}")
 
-# RapidAPI se status check karne ka command
 @bot.message_handler(commands=['api'])
 def call_api(message):
     try:
