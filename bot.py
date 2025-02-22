@@ -37,7 +37,14 @@ stylish_separators = [
     "💫𓆩 {name} 𓆪💫", "💠☬ {name} ☬💠", "⭑𓆩 {name} 𓆪⭑",
     "❀༺ {name} ༻❀", "☁️𓆩 {name} 𓆪☁️", "🦋𓆩 {name} 𓆪🦋",
     "✿𓆩 {name} 𓆪✿", "❥𓆩 {name} 𓆪❥", "🌹𓆩 {name} 𓆪🌹",
-    "⭐𓆩 {name} 𓆪⭐", "✨𓆩 {name} 𓆪✨", "🎀𓆩 {name} 𓆪🎀"
+    "⭐𓆩 {name} 𓆪⭐", "✨𓆩 {name} 𓆪✨", "🎀𓆩 {name} 𓆪🎀",
+    "꧁𓊈𒆜 {text} 𒆜𓊉꧂",
+        "《¤ {text} ¤》",
+          " {text} 🖌",
+        "➵❦{text}❦➵",
+        "༄༄ {text} ༄༄",
+        "『 {text} 』",
+        "卍 {text} 卍"
 ]
 
 # Stylish fonts (Now 20+ styles!)
@@ -56,13 +63,7 @@ def stylish_fonts(text):
                       "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷" 
                       "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ"), 
 
-        f"꧁𓊈𒆜 {text} 𒆜𓊉꧂",
-        f"《¤ {text} ¤》",
-        f" {text} 🖌",
-        f"➵❦{text}❦➵",
-        f"༄༄ {text} ༄༄",
-        f"『 {text} 』",
-        f"卍 {text} 卍"
+     
     ]
     return random.choice(fonts)
 
