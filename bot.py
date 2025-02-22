@@ -90,7 +90,7 @@ def style_message(message):
         return
 
     stylish_names = generate_50_stylish_names(text)
-    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}")
+    bot.send_message(message.chat.id, f"✨ Here are 15 stylish names:\n\n{stylish_names}")
 
 # API check command
 @bot.message_handler(commands=['api'])
