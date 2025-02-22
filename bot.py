@@ -1,62 +1,93 @@
 import telebot
 import random
 import http.client
+import os
+from dotenv import load_dotenv
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# Bot token
-TOKEN = "7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0"
+# Load environment variables
+load_dotenv()
+BOT_TOKEN = os.getenv("7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0")
+RAPIDAPI_KEY = os.getenv("823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1")
 
-# RapidAPI Key
-RAPIDAPI_KEY = "823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1"
+bot = telebot.TeleBot(BOT_TOKEN)
 
-bot = telebot.TeleBot(TOKEN)
-
-# Stylish text fonts
-def fancy_text(text, style=1):
-    fonts = [
-        str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏" 
-                      "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝐽𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"),
-        str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝓉𝓊𝕧𝕨𝕩𝕪𝕫" 
-                      "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ"),
-        str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟" 
-                      "𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅"),
-        str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
-                      "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷" 
-                      "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ")
-    ]
-    return text.translate(random.choice(fonts))
-
-# Emoji Pack
-emoji_pack = [
-    "👑💖", "💖👑", "👑🔥", "💎👑", "👑✨", "💖🎀", "👑💫", "👑🎉", "💖🥇", "👑😎",
-    "🌟👑", "💖🌹", "👑👀", "🔥👑", "✨💖", "💎💖", "🎀👑", "👑💜", "👑🖤", "💖💫",
-    "👑🌺", "💖🔥", "👑🎆", "🥇💖", "🌟🔥", "💖💎", "👑🎀", "💖💥", "🔥🥇", "💖🌠",
-    "💖💗", "👑💞", "👑💖🌟", "🔥💎", "🎉👑", "💖👑✨", "🎆💖", "💖🔥💎", "👑💥", "🌠👑",
-    "💎👑💖", "💖💡", "👑🎈", "👑💖🌹", "💖🕊", "💖👑💥", "👑💎🔥", "💖🌟✨", "🥇👑", "💖🚀",
-    "👑👑", "✦✦✦👑✦✦✦", "♛♛", "✦✦♛✦✦", "✦✦", "꧁༒☬☬༒꧂", "꧁༒༒꧂", "༒༒", "꧁꧂"
+# Stylish separators
+stylish_separators = [
+    "✧༚✦꯭ {name} ✦꯭༚✧",
+    "❀⏤͟͟͞͞𓆩꯭♡꯭𓆪⏤͟͟͞͞ {name} ❀",
+    "𖠄❥꯭ {name} ❥꯭𖠄",
+    "⟆♡̷̷̷⟅ {name} ⟆♡̷̷̷⟅",
+    "𓆩⟡𓆪 {name} 𓆩⟡𓆪",
+    "𓆫❦꯭𓆩 {name} 𓆩꯭❦𓆫",
+    "⟆💠⟅ {name} ⟆💠⟅",
+    "⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞ {name} ⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞",
+    "𓂃◌꯭🍃꯭𓂂 {name} 𓂃◌꯭🍃꯭𓂂",
+    "⏤͟͟͞͞🦋꯭𓆩 {name} 𓆪꯭🦋⏤͟͟͞͞"
 ]
 
-def add_emojis(text):
-    return random.choice(emoji_pack) + " " + text + " " + random.choice(emoji_pack)
+# Stylish fonts
+def stylish_fonts(text):
+    fonts = [
+        f"𝒞𝓊𝓇𝓈𝒾𝓋𝑒: {text} ✨",
+        f"𝔊𝔬𝔱𝔥𝔦𝔠: {text} 🔥",
+        f"𝕊𝕢𝕦𝕒𝕣𝕖: {text} 🔳",
+        f"🅑🅤🅑🅑🅛🅔: {text} 🟠",
+        f"𝗕𝗼𝗹𝗱: {text} 💪",
+        f"𝘼𝙚𝙨𝙩𝙝𝙚𝙩𝙞𝙘: {text} 🌙",
+        f"Ⓕⓐⓝⓒⓨ: {text} 🎭",
+    ]
+    return random.choice(fonts)
 
-@bot.message_handler(commands=['start', 'help'])
+# Emoji pack
+emoji_pack = ["❤️", "💖", "💞", "💜", "✨", "🔥", "💎", "🌟", "🎀", "👑"]
+
+# Generate stylish text
+def generate_stylish_text(name):
+    sep = random.choice(stylish_separators)
+    tag = random.choice(["@", "#"])
+    heart = random.choice(emoji_pack)
+    return sep.format(name=f"{tag}{name} {heart}")
+
+# Generate 50 stylish names
+def generate_50_stylish_names(name):
+    names = [generate_stylish_text(name) for _ in range(50)]
+    return "\n".join(names)
+
+# Start command
+@bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "Send any text and I'll style it! Try /style YourText")
+    bot.send_message(message.chat.id, "👋 Welcome! Send /style YourName to get stylish names.")
 
+# Style command
 @bot.message_handler(commands=['style'])
 def style_message(message):
     text = message.text.replace("/style ", "").strip()
     
     if not text:
-        bot.reply_to(message, "Please provide text. Example: /style Hello")
+        bot.reply_to(message, "Please provide a name. Example: /style Alex")
         return
-    
-    styled_names = "\n".join([add_emojis(fancy_text(text)) for _ in range(50)])
-    
-    bot.reply_to(message, f"Here are your 50 stylish names:\n\n{styled_names}")
 
+    stylish_names = generate_50_stylish_names(text)
+
+    # Inline button to generate more names
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton("🔄 Regenerate", callback_data=f"regen_{text}"))
+
+    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}", reply_markup=markup)
+
+# Callback for regenerate button
+@bot.callback_query_handler(func=lambda call: call.data.startswith("regen_"))
+def regenerate_names(call):
+    name = call.data.split("_")[1]
+    stylish_names = generate_50_stylish_names(name)
+    
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton("🔄 Regenerate", callback_data=f"regen_{name}"))
+
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"✨ Here are 50 stylish names:\n\n{stylish_names}", reply_markup=markup)
+
+# API check command
 @bot.message_handler(commands=['api'])
 def call_api(message):
     try:
