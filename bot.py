@@ -70,9 +70,9 @@ def generate_stylish_text(name):
     heart = random.choice(emoji_pack)
     return sep.format(name=f"{tag}{stylish_fonts(name)} {heart}")
 
-# Generate 15 stylish names
-def generate_15_stylish_names(name):
-    names = [generate_stylish_text(name) for _ in range(15)]
+# Generate 50 stylish names
+def generate_50_stylish_names(name):
+    names = [generate_stylish_text(name) for _ in range(50)]
     return "\n".join(names)
 
 # Start command
@@ -90,7 +90,7 @@ def style_message(message):
         return
 
     stylish_names = generate_50_stylish_names(text)
-    bot.send_message(message.chat.id, f"✨ Here are 15 stylish names:\n\n{stylish_names}")
+    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}")
 
 # API check command
 @bot.message_handler(commands=['api'])
