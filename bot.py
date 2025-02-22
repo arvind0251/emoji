@@ -70,9 +70,9 @@ def generate_stylish_text(name):
     heart = random.choice(emoji_pack)
     return sep.format(name=f"{tag}{stylish_fonts(name)} {heart}")
 
-# Generate 25 stylish names
-def generate_50_stylish_names(name):
-    names = [generate_stylish_text(name) for _ in range(25)]
+# Generate 15 stylish names
+def generate_15_stylish_names(name):
+    names = [generate_stylish_text(name) for _ in range(15)]
     return "\n".join(names)
 
 # Start command
