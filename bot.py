@@ -38,18 +38,13 @@ stylish_separators = [
     "❀༺ {name} ༻❀", "☁️𓆩 {name} 𓆪☁️", "🦋𓆩 {name} 𓆪🦋",
     "✿𓆩 {name} 𓆪✿", "❥𓆩 {name} 𓆪❥", "🌹𓆩 {name} 𓆪🌹",
     "⭐𓆩 {name} 𓆪⭐", "✨𓆩 {name} 𓆪✨", "🎀𓆩 {name} 𓆪🎀",
-    "꧁𓊈𒆜 {text} 𒆜𓊉꧂",
-        "《¤ {text} ¤》",
-          " {text} 🖌",
-        "➵❦{text}❦➵",
-        "༄༄ {text} ༄༄",
-        "『 {text} 』",
-        "卍 {text} 卍"
+   
 ]
 
 # Stylish fonts (Now 20+ styles!)
 def stylish_fonts(text):
     fonts = [
+        
        str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
                       "𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏" 
                       "𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝐽𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵"),
