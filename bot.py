@@ -1,32 +1,30 @@
 import telebot
 import random
 import http.client
-import os
-from dotenv import load_dotenv
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# Load environment variables
-load_dotenv()
-BOT_TOKEN = os.getenv("7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0")
-RAPIDAPI_KEY = os.getenv("823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1")
+# 🔴 Directly Add Your Keys Here
+BOT_TOKEN = "7585692002:AAHcYU6Ksn16t21kb3mF82-c3fO-N_5Yik0"
+RAPIDAPI_KEY = "823ad731bemsh1a89f7cbcabd094p1f2447jsnad1907e6f3a1"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Stylish separators
 stylish_separators = [
-    "✧༚✦꯭ {name} ✦꯭༚✧",
-    "❀⏤͟͟͞͞𓆩꯭♡꯭𓆪⏤͟͟͞͞ {name} ❀",
-    "𖠄❥꯭ {name} ❥꯭𖠄",
-    "⟆♡̷̷̷⟅ {name} ⟆♡̷̷̷⟅",
-    "𓆩⟡𓆪 {name} 𓆩⟡𓆪",
-    "𓆫❦꯭𓆩 {name} 𓆩꯭❦𓆫",
-    "⟆💠⟅ {name} ⟆💠⟅",
-    "⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞ {name} ⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞",
-    "𓂃◌꯭🍃꯭𓂂 {name} 𓂃◌꯭🍃꯭𓂂",
-    "⏤͟͟͞͞🦋꯭𓆩 {name} 𓆪꯭🦋⏤͟͟͞͞"
+    "⟆♡̷̷̷⟅ {name} ⟆♡̷̷̷⟅", "𓆩⟡𓆪 {name} 𓆩⟡𓆪", "𓆫❦꯭𓆩 {name} 𓆩꯭❦𓆫",
+    "⟆💠⟅ {name} ⟆💠⟅", "⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞ {name} ⏤͟͟͞͞✧༚𓆩꯭𓆪༚✧⏤͟͟͞͞",
+    "𓂃◌꯭🍃꯭𓂂 {name} 𓂃◌꯭🍃꯭𓂂", "⏤͟͟͞͞🦋꯭𓆩 {name} 𓆪꯭🦋⏤͟͟͞͞",
+    "꧁༒☬ {name} ☬༒꧂", "✦✦✦ {name} ✦✦✦", "♛♛ {name} ♛♛",
+    "♜♜ {name} ♜♜", "༺✮༻ {name} ༺✮༻", "★彡 {name} 彡★", 
+    "✧༚✦꯭ {name} ✦꯭༚✧", "❀⏤͟͟͞͞𓆩꯭♡꯭𓆪⏤͟͟͞͞ {name} ❀", "𖠄❥꯭ {name} ❥꯭𖠄", "⟆♡̷̷̷⟅ {name} ⟆♡̷̷̷⟅",
+    "𓆩⟡𓆪 {name} 𓆩⟡𓆪", "𓆫❦꯭𓆩 {name} 𓆩꯭❦𓆫", "⟆💠⟅ {name} ⟆💠⟅", "𓂃◌꯭🍃꯭𓂂 {name} 𓂃◌꯭🍃꯭𓂂",
+    "⏤͟͟͞͞🦋꯭𓆩 {name} 𓆪꯭🦋⏤͟͟͞͞", "⚜️𓆩 {name} 𓆪⚜️", "❖⏤͟͟͞͞𓆩 {name} 𓆪⏤͟͟͞͞❖", "✪𓆩 {name} 𓆪✪",
+    "꧁༒☬ {name} ☬༒꧂", "꧁𓊈 {name} 𓊉꧂", "★彡 {name} 彡★", "❁𓆩 {name} 𓆪❁", "✿❀ {name} ❀✿",
+    "💎⏤͟͟͞͞𓆩 {name} 𓆪⏤͟͟͞͞💎", "➳♡ {name} ♡➳", "💖𓆩 {name} 𓆪💖", "✧🖤 {name} 🖤✧",
+    "❤⃝𓆩 {name} 𓆪❤⃝", "✾𓆩 {name} 𓆪✾", "🍂𓆩 {name} 𓆪🍂", "⚡𓆩 {name} 𓆪⚡",
+    "🌙⏤͟͟͞͞𓆩 {name} 𓆪⏤͟͟͞͞🌙", "🌸❥ {name} ❥🌸", "☾𓆩 {name} 𓆪☽", "🌟𓆩 {name} 𓆪🌟",
 ]
 
-# Stylish fonts
+# Stylish fonts (Now 20+ styles!)
 def stylish_fonts(text):
     fonts = [
         f"𝒞𝓊𝓇𝓈𝒾𝓋𝑒: {text} ✨",
@@ -36,6 +34,20 @@ def stylish_fonts(text):
         f"𝗕𝗼𝗹𝗱: {text} 💪",
         f"𝘼𝙚𝙨𝙩𝙝𝙚𝙩𝙞𝙘: {text} 🌙",
         f"Ⓕⓐⓝⓒⓨ: {text} 🎭",
+        f"𝓕𝓪𝓷𝓬𝔂: {text} 💖",
+        f"𝕲𝖑𝖎𝖙𝖈𝖍: {text} ⚡",
+        f"𝐅𝐮𝐭𝐮𝐫𝐢𝐬𝐭𝐢𝐜: {text} 🚀",
+        f"𝔖𝔱𝔶𝔩𝔦𝔰𝔥: {text} 💎",
+        f"Ƥяємιυм: {text} 🏆",
+        f"🆂🆃🆈🅻🅴: {text} 🎨",
+        f"𝕄𝕆𝔻𝔼ℝℕ: {text} 💻",
+        f"꧁𓊈𒆜 {text} 𒆜𓊉꧂",
+        f"《¤ {text} ¤》",
+        f"𝓓𝓮𝓬𝓸𝓻𝓪𝓽𝓲𝓿𝓮: {text} 🖌",
+        f"➵❦{text}❦➵",
+        f"༄༄ {text} ༄༄",
+        f"『 {text} 』",
+        f"卍 {text} 卍"
     ]
     return random.choice(fonts)
 
@@ -47,7 +59,7 @@ def generate_stylish_text(name):
     sep = random.choice(stylish_separators)
     tag = random.choice(["@", "#"])
     heart = random.choice(emoji_pack)
-    return sep.format(name=f"{tag}{name} {heart}")
+    return sep.format(name=f"{tag}{stylish_fonts(name)} {heart}")
 
 # Generate 50 stylish names
 def generate_50_stylish_names(name):
@@ -69,23 +81,7 @@ def style_message(message):
         return
 
     stylish_names = generate_50_stylish_names(text)
-
-    # Inline button to generate more names
-    markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("🔄 Regenerate", callback_data=f"regen_{text}"))
-
-    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}", reply_markup=markup)
-
-# Callback for regenerate button
-@bot.callback_query_handler(func=lambda call: call.data.startswith("regen_"))
-def regenerate_names(call):
-    name = call.data.split("_")[1]
-    stylish_names = generate_50_stylish_names(name)
-    
-    markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("🔄 Regenerate", callback_data=f"regen_{name}"))
-
-    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"✨ Here are 50 stylish names:\n\n{stylish_names}", reply_markup=markup)
+    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}")
 
 # API check command
 @bot.message_handler(commands=['api'])
