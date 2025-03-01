@@ -56,8 +56,8 @@ def style_message(message):
         bot.reply_to(message, "Please provide a name. Example: /style Alex")
         return
 
-    stylish_names = generate_50_stylish_names(text)
-    bot.send_message(message.chat.id, f"✨ Here are 50 stylish names:\n\n{stylish_names}")
+    stylish_names = generate_100_stylish_names(text)
+    bot.send_message(message.chat.id, f"✨ Here are 100 stylish names:\n\n{stylish_names}")
 
 # API check command
 @bot.message_handler(commands=['api'])
