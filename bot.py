@@ -38,14 +38,14 @@ def generate_stylish_text(name):
     heart = random.choice(emoji_pack)
     return sep.format(name=f"{stylish_fonts(name)} {heart}")
 
-# ✅ Generate 50 stylish names
-def generate_50_stylish_names(name):
-    return "\n".join([generate_stylish_text(name) for _ in range(50)])
+# ✅ Generate 100 stylish names
+def generate_100_stylish_names(name):
+    return "\n".join([generate_stylish_text(name) for _ in range(100)])
 
 # Start command
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "👋 Welcome! Send /style YourName to get 50 stylish names.")
+    bot.send_message(message.chat.id, "👋 Welcome! Send /style YourName to get 100 stylish names.")
 
 # Style command
 @bot.message_handler(commands=['style'])
